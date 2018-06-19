@@ -1,0 +1,21 @@
+{
+    "family": "helloworld",
+    "containerDefinitions": [
+        {
+            "name": "helloworld",
+            "image": "aws_account_id.dkr.ecr.us-east-2.amazonaws.com/helloworld",
+            "cpu": 2,
+            "memory": 128,
+            "portMappings": [
+                {
+                    "containerPort": 50051,
+                    "hostPort": 50051
+                }
+            ],
+            "entryPoint": [
+                "/go/src/github.com/backendservice/example-service/server"
+            ],
+            "essential": true
+        }
+    ]
+}

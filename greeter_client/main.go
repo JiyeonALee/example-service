@@ -11,6 +11,7 @@ import (
 )
 
 const (
+	//	address     = "ec2-18-191-204-27.us-east-2.compute.amazonaws.com:50051"
 	address     = "localhost:50051"
 	defaultName = "world"
 )
@@ -29,7 +30,7 @@ func main() {
 	if len(os.Args) > 1 {
 		name = os.Args[1]
 	}
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
 	if err != nil {
