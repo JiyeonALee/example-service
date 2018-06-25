@@ -30,11 +30,19 @@ func main() {
 	if len(os.Args) > 1 {
 		name = os.Args[1]
 	}
+	message, err := SayHello(c, context.Background(), time.Minute, name)
+	if err != nil {
+		log.Fatalf("could not greet: %v", err)
+	}
+	log.Printf("Greeting: %s", *message)
+}
+
+func SayHello(c pb.GreeterClient, ctx context.Context, timeout time.Duration, name string) (*string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
 	if err != nil {
-		log.Fatalf("could not greet: %v", err)
+		return nil, err
 	}
-	log.Printf("Greeting: %s", r.Message)
+	return &r.Message, nil
 }
