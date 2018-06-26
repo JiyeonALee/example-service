@@ -2,6 +2,8 @@ server:
 	go build -o server ./greeter_server
 run: server
 	./server
+run-client:
+	go run greeter_client/*
 test-client:
 	go test greeter_client/*
 test-server:
